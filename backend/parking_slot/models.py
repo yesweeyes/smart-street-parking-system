@@ -3,8 +3,8 @@ from django.db import models
 class ParkingSlot(models.Model):
     
     class ParkingSlotStatusChoices(models.TextChoices):
-        OCCUPIED = "Occupied"
-        VACANT = "Vacant"
+        OCCUPIED = "OCCUPIED"
+        VACANT = "VACANT"
         
     slot_id = models.AutoField(primary_key=True)
     location = models.CharField(max_length=100)
