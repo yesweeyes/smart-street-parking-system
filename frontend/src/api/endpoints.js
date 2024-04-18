@@ -1,5 +1,5 @@
 function ParkingSlots() {
-    const GET_ALL_PARKING_SLOTS = "parking_slots/all/";
+    const GET_ALL_PARKING_SLOTS = "slot/all/";
 }
 
 function Reservations() {
