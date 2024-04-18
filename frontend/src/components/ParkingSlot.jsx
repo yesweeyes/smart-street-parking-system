@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Paper, Typography } from '@mui/material';
 import api from '../api/api';
-import { PARKING_SLOT_DETAIL } from '../api/endpoints';
 
-function ParkingSlot({ parkingSlot }) {
+
+function ParkingSlot({ parkingSlot, fetchSlots }) {
   const [openModal, setOpenModal] = useState(false);
 
   const handleSlotClick = () => {
@@ -21,17 +21,17 @@ function ParkingSlot({ parkingSlot }) {
 
   const handleDelete = () => {
     api
-    .delete(PARKING_SLOT_DETAIL(parkingSlot.slot_id))
+    .delete(`slot/${parkingSlot.slot_id}/`)
     .then((response) => console.log(response))
-    .catch((error) => console.log(error))
-    .finally(()=>{
-      props.fetchSlots();
-      handleCloseModal();
-    });
+    .catch((error) => console.log(error));
+
+    fetchSlots();
+    handleCloseModal();
+    
   }
 
   return (
-    <div className="parking-grid">
+    <div className="parking-slot-grid-item">
         <Button onClick={handleSlotClick} size="small">
           <Paper elevation={3} sx={{ padding: 2, height: '150px', width: '100px', overflow: 'hidden', backgroundColor: parkingSlotStatusColors[parkingSlot.status] }}>
             <Typography variant="subtitle1">Slot ID: {parkingSlot.slot_id}</Typography>
@@ -48,8 +48,12 @@ function ParkingSlot({ parkingSlot }) {
           new Date(parkingSlot.expiration).toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" })
           : "None"}
           </Typography>
-          <Typography variant="body1">Battery Level: {parkingSlot.parkingmeter.battery_level}</Typography>
-          <Typography variant="body1">Meter Status: {parkingSlot.parkingmeter.status}</Typography>
+          {parkingSlot?.parkingmeter && (
+            <>
+              <Typography variant="body1">Battery Level: {parkingSlot.parkingmeter.battery_level}</Typography>
+              <Typography variant="body1">Meter Status: {parkingSlot.parkingmeter.status}</Typography>
+            </>
+          )}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseModal} color="primary" size="small">Close</Button>
