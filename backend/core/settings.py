@@ -133,5 +133,5 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWS_CREDENTIALS = True
 
 CRONJOBS = [
-    ('* 1 * * *', 'python3 manage.py check_slot_expiry')
+    ('* * * * *', 'python3 manage.py check_slot_expiry')
 ]
