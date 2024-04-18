@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Paper, Typography } from '@mui/material';
+import api from '../api/api';
+import { PARKING_SLOT_DETAIL } from '../api/endpoints';
 
 function ParkingSlot({ parkingSlot }) {
   const [openModal, setOpenModal] = useState(false);
@@ -16,6 +18,17 @@ function ParkingSlot({ parkingSlot }) {
     OCCUPIED: '#F44336',
     VACANT: '#4CAF50',
   };
+
+  const handleDelete = () => {
+    api
+    .delete(PARKING_SLOT_DETAIL(parkingSlot.slot_id))
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error))
+    .finally(()=>{
+      props.fetchSlots();
+      handleCloseModal();
+    });
+  }
 
   return (
     <div className="parking-grid">
@@ -40,6 +53,7 @@ function ParkingSlot({ parkingSlot }) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseModal} color="primary" size="small">Close</Button>
+          <Button onClick={handleDelete} color="primary" size="small">Delete</Button>
         </DialogActions>
       </Dialog>
     </div>
