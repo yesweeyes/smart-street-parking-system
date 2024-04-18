@@ -13,8 +13,8 @@ class ParkingSlotAPIView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 class ParkingSlotDetailAPIView(APIView):
-    def delete(self, id:int):
-        parking_slot = get_object_or_404(ParkingSlot, id)
+    def delete(self, request, id):
+        parking_slot = ParkingSlot.objects.get(slot_id=id)
         parking_slot.delete()
         
-        return Response({"data":"Parking slot has been deleted"}, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_204_NO_CONTENT)
