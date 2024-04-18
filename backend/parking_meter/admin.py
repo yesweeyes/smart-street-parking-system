@@ -1,3 +1,4 @@
 from django.contrib import admin
+from parking_meter.models import ParkingMeter
 
-# Register your models here.
+admin.site.register(ParkingMeter)
