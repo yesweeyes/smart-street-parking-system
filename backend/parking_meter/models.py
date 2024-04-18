@@ -10,3 +10,6 @@ class ParkingMeter(models.Model):
     slot = models.OneToOneField(ParkingSlot, on_delete=models.CASCADE)
     status = models.CharField(default=ParkingMeterStatusChoices.FUNCTIONAL, max_length=20, choices=ParkingMeterStatusChoices.choices)
     battery_level = models.IntegerField()
+    
+    def __str__(self):
+        return "Meter: "+self.slot.location
