@@ -6,7 +6,13 @@ from parking_slot.serializer import ParkingSlotSerializer
 from parking_slot.serializer import LimitedParkingSlotSerializer
 from rest_framework import status
 
-class ParkingSlotCreateAPIView(APIView):
+class ParkingSlotAPIView(APIView):
+    def get(self, request):
+        parking_slots_with_meter = ParkingSlot.objects.select_related("parkingmeter")
+        serializer = ParkingSlotSerializer(parking_slots_with_meter, many=True)
+        
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
     def post(self, request):
         serializer = LimitedParkingSlotSerializer(data=request.data)
         if serializer.is_valid():
@@ -14,14 +20,6 @@ class ParkingSlotCreateAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
     
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class ParkingSlotAPIView(APIView):
-    def get(self, request):
-        parking_slots_with_meter = ParkingSlot.objects.select_related("parkingmeter")
-        serializer = ParkingSlotSerializer(parking_slots_with_meter, many=True)
-        
-        return Response(serializer.data, status=status.HTTP_200_OK)
         
 class ParkingSlotDetailAPIView(APIView):
     def delete(self, request, id):
