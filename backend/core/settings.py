@@ -71,7 +71,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('DATABASE_ENGINE'),
+        "ENGINE": "django.db.backends.mysql",
         'NAME': os.getenv('DATABASE_NAME'),
         'USER': os.getenv('DATABASE_USER'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
@@ -133,5 +133,5 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWS_CREDENTIALS = True
 
 CRONJOBS = [
-    ('* 1 * * * *', 'parking_slots.events'),
+    ('* * * * *', 'python3 manage.py check_slot_expiry')
 ]
