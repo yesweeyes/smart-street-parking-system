@@ -133,5 +133,5 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWS_CREDENTIALS = True
 
 CRONJOBS = [
-    ('* 1 * * * *', 'parking_slots.events'),
+    ('* 1 * * *', 'python manage.py check_slots')
 ]

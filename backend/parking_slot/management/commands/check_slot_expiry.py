@@ -1,4 +1,4 @@
-# management/commands/check_slots.py
+# management/commands/events.py
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 from parking_slot.models import ParkingSlot
