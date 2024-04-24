@@ -9,10 +9,8 @@ class ParkingMeterAPIView(APIView):
     def get(self, request):
         parking_meters = ParkingMeter.objects.all()
         serializer = ParkingMeterSerializer(parking_meters, many=True)
-        if serializer.is_valid():
-            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data, status=status.HTTP_200_OK)
         
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def post(self, request):
         serializer = ParkingMeterSerializer(data=request.data)
@@ -31,11 +29,8 @@ class ParkingMeterDetailAPIView(APIView):
     def get(self, request, id):
         parking_meter = ParkingMeter.objects.get(meter_id=id)
         serializer = ParkingMeterSerializer(parking_meter)
-        if serializer.is_valid():
-            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.data, status=status.HTTP_200_OK)
        
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
     def patch(self, request, id):
         try:
             parking_meter = ParkingMeter.objects.get(meter_id=id)
