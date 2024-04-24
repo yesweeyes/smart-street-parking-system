@@ -16,24 +16,24 @@ class ParkingMeterAPIView(APIView):
         serializer = ParkingMeterSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    def delete(self):
+    def delete(self, request):
         parking_meters = ParkingMeter.objects.all()
         parking_meters.delete()
         return Response(status=status.HTTP_200_OK)
     
 class ParkingMeterDetailAPIView(APIView):
     def get(self, request, id):
-        parking_meter = ParkingMeter.objects.get(meter_id=id)
+        parking_meter = ParkingMeter.objects.get(id=id)
         serializer = ParkingMeterSerializer(parking_meter)
         return Response(serializer.data, status=status.HTTP_200_OK)
        
     def patch(self, request, id):
         try:
-            parking_meter = ParkingMeter.objects.get(meter_id=id)
+            parking_meter = ParkingMeter.objects.get(id=id)
             serializer = ParkingMeterSerializer(parking_meter, data=request.data)  
             if serializer.is_valid():
                 serializer.save()  
@@ -45,7 +45,7 @@ class ParkingMeterDetailAPIView(APIView):
                 
     def delete(self, request, id):
         try:
-            parking_meter = ParkingMeter.objects.get(meter_id=id)
+            parking_meter = ParkingMeter.objects.get(id=id)
             parking_meter.delete()
             return Response(status=status.HTTP_200_OK)
         except ParkingMeter.DoesNotExist:
