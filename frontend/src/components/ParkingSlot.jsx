@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Paper, Typography } from '@mui/material';
 import api from '../api/api';
+import {PARKING_SLOT} from "../api/endpoints";
 
 
 function ParkingSlot({ parkingSlot, fetchSlots }) {
@@ -21,7 +22,7 @@ function ParkingSlot({ parkingSlot, fetchSlots }) {
 
   const handleDelete = () => {
     api
-    .delete(`slot/${parkingSlot.slot_id}/`)
+    .delete(PARKING_SLOT.PARKING_SLOT_DETAIL_URL(parkingSlot.id))
     .then((response) => console.log(response))
     .catch((error) => console.log(error));
 
@@ -34,14 +35,14 @@ function ParkingSlot({ parkingSlot, fetchSlots }) {
     <div className="parking-slot-grid-item">
         <Button onClick={handleSlotClick} size="small">
           <Paper elevation={3} sx={{ padding: 2, height: '150px', width: '100px', overflow: 'hidden', backgroundColor: parkingSlotStatusColors[parkingSlot.status] }}>
-            <Typography variant="subtitle1">Slot ID: {parkingSlot.slot_id}</Typography>
+            <Typography variant="subtitle1">Slot ID: {parkingSlot.id}</Typography>
             <Typography variant="body2">Status: {parkingSlot.status}</Typography>
           </Paper>
         </Button>
       <Dialog open={openModal} onClose={handleCloseModal}>
         <DialogTitle>Slot Details</DialogTitle>
         <DialogContent dividers>
-          <Typography variant="body1">Slot ID: {parkingSlot.slot_id}</Typography>
+          <Typography variant="body1">Slot ID: {parkingSlot.id}</Typography>
           <Typography variant="body1">Status: {parkingSlot.status}</Typography>
           <Typography variant="body1">Location: {parkingSlot.location}</Typography>
           <Typography variant="body1">Expiration: {parkingSlot.expiration?  
