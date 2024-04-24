@@ -30,8 +30,6 @@ INSTALLED_APPS = [
     'django_crontab',
     'parking_meter',
     'parking_slot',
-    'reservation',
-    'transaction',
 ]
 
 MIDDLEWARE = [
