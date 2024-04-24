@@ -6,7 +6,7 @@ class ParkingSlot(models.Model):
         OCCUPIED = "OCCUPIED"
         VACANT = "VACANT"
         
-    slot_id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     location = models.CharField(max_length=100)
     status = models.CharField(default=ParkingSlotStatusChoices.VACANT ,max_length=10, choices=ParkingSlotStatusChoices.choices)
     expiration = models.DateTimeField(blank=True, null=True)
