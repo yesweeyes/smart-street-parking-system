@@ -6,7 +6,7 @@ ALLOWED_HOSTS = ['*']
 
 load_dotenv()
 
-STATIC_ROOT=os.path.join(BASE_DIR,'static')
+STATIC_ROOT = BASE_DIR/'staticfiles'
 
 CSRF_TRUSTED_ORIGINS = ['https://'+os.getenv('WEBSITE_HOSTNAME'),]
 
