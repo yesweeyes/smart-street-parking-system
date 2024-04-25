@@ -23,9 +23,8 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-   'https://agreeable-mushroom-0f44e6600.5.azurestaticapps.net',
-]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWS_CREDENTIALS = True
 
 
 DATABASES = {
