@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Paper, Typography } from '@mui/material';
-import api from '../api/api';
+import api from '../api/data';
 import {PARKING_SLOT} from "../api/endpoints";
 
 

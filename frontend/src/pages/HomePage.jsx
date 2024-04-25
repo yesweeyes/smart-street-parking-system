@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid,  Button } from "@mui/material";
 import ParkingSlot from "../components/ParkingSlot";
-import api from "../api/api";
+import api from "../api/data";
 import { PARKING_SLOT } from "../api/endpoints";
 
 function HomePage() {
