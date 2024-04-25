@@ -8,7 +8,7 @@ load_dotenv()
 
 STATIC_ROOT = BASE_DIR/'staticfiles'
 
-CSRF_TRUSTED_ORIGINS = ['https://'+os.getenv('WEBSITE_HOSTNAME'),]
+CSRF_TRUSTED_ORIGINS = ['https://'+os.environ['WEBSITE_HOSTNAME']]
 
 DEBUG = False
 
