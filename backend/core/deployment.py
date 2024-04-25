@@ -6,7 +6,7 @@ ALLOWED_HOSTS = ['*']
 
 load_dotenv()
 
-# CSRF_TRUSTED_ORIGINS = ['https://'+os.environ['WEBSITE_HOSTNAME'],]
+CSRF_TRUSTED_ORIGINS = ['https://'+os.getenv('WEBSITE_HOSTNAME')]
 
 DEBUG = False
 
