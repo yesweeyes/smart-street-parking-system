@@ -127,8 +127,9 @@ ALLOWED_HOSTS = [
     "*",
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWS_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000'
+]
 
 # CRONJOBS = [
 #     ('* * * * *', 'python3 manage.py check_slot_expiry')
