@@ -130,6 +130,6 @@ ALLOWED_HOSTS = [
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWS_CREDENTIALS = True
 
-CRONJOBS = [
-    ('* * * * *', 'python3 manage.py check_slot_expiry')
-]
+# CRONJOBS = [
+#     ('* * * * *', 'python3 manage.py check_slot_expiry')
+# ]
