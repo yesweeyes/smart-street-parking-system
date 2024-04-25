@@ -18,7 +18,7 @@ class ParkingSlotAPIView(APIView):
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    def delete(self):
+    def delete(self, request):
         parking_slots = ParkingSlot.objects.all()
         parking_slots.delete()
         return Response(status=status.HTTP_200_OK)
