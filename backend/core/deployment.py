@@ -4,6 +4,8 @@ from .settings import BASE_DIR
 
 ALLOWED_HOSTS = ['*']
 
+load_dotenv()
+
 # CSRF_TRUSTED_ORIGINS = ['https://'+os.environ['WEBSITE_HOSTNAME'],]
 
 DEBUG = False
