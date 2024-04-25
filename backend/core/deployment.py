@@ -8,7 +8,9 @@ load_dotenv()
 
 STATIC_ROOT = BASE_DIR/'staticfiles'
 
-CSRF_TRUSTED_ORIGINS = ['*']
+CSRF_TRUSTED_ORIGINS = [
+    "https://smart-parking-system-backend.azurewebsites.net",    
+]
 
 DEBUG = False
 
