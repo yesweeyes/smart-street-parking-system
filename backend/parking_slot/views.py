@@ -20,7 +20,8 @@ class ParkingSlotAPIView(APIView):
     
     def delete(self, request):
         parking_slots = ParkingSlot.objects.all()
-        parking_slots.delete()
+        if parking_slots:
+            parking_slots.delete()
         return Response(status=status.HTTP_200_OK)
     
 class ParkingSlotDetailAPIView(APIView):

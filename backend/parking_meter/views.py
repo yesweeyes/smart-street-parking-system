@@ -22,7 +22,8 @@ class ParkingMeterAPIView(APIView):
     
     def delete(self, request):
         parking_meters = ParkingMeter.objects.all()
-        parking_meters.delete()
+        if parking_meters:
+            parking_meters.delete()
         return Response(status=status.HTTP_200_OK)
     
 class ParkingMeterDetailAPIView(APIView):
