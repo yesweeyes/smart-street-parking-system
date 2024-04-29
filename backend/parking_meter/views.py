@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from parking_meter.models import ParkingMeter
-from parking_meter.serializer import ParkingMeterSerializer
+from parking_meter.serializer import ParkingMeterSerializer, CountSerializer
 
 class ParkingMeterAPIView(APIView):
     def get(self, request):
@@ -51,3 +51,9 @@ class ParkingMeterDetailAPIView(APIView):
             return Response(status=status.HTTP_200_OK)
         except ParkingMeter.DoesNotExist:
             return Response({'error': 'Parking meter not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+class ParkingMeterAllAPIView(APIView):
+    def get(self, request):
+        count = ParkingMeter.objects.filter(status="FUNCTIONAL").count()
+        serializer = CountSerializer({"count": count})
+        return Response(serializer.data, status=status.HTTP_200_OK)
