@@ -18,6 +18,3 @@ class ParkingMeterSerializer(serializers.ModelSerializer):
             validated_data['slot'] = slot  
 
         return ParkingMeter.objects.create(**validated_data) 
-    
-class CountSerializer(serializers):
-    count = serializers.IntegerField()
